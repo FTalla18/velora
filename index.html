@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora — Car Rental in Tampa, Orlando &amp; Miami</title>
+  <meta name="description" content="Velora car rental: skip-the-counter pickup, transparent pricing and a 24/7 AI concierge. Economy to exotic in Tampa, Orlando and Miami." />
+  <meta name="theme-color" content="#0B0D10" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#top" class="brand" aria-label="Velora home">
+        <img src="assets/logo-mark.svg" alt="" width="36" height="36" />
+        <span>velora</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#fleet">Fleet</a>
+        <a href="#how">How it works</a>
+        <a href="#locations">Locations</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__cta">
+        <button class="btn btn--ghost btn--sm" data-open-chat>Ask Vee</button>
+        <a href="#book" class="btn btn--accent btn--sm">Book now</a>
+        <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero__media">
+        <img src="assets/img/hero.jpg" alt="Sports car driving down an open road at sunset" />
+      </div>
+      <div class="container hero__content">
+        <p class="eyebrow"><span class="dot"></span> Tampa · Orlando · Miami</p>
+        <h1 class="hero__title">Rent the drive,<br /><em>not the hassle.</em></h1>
+        <p class="hero__sub">No counters. No surprise fees. Unlock your car from your phone and hit the Gulf Coast in minutes — from $39/day.</p>
+        <div class="hero__stats">
+          <div><strong>4.9★</strong><span>12k+ reviews</span></div>
+          <div><strong>3 min</strong><span>avg. pickup</span></div>
+          <div><strong>$0</strong><span>hidden fees</span></div>
+        </div>
+      </div>
+
+      <!-- Booking widget -->
+      <form class="booking container" id="book" autocomplete="off">
+        <div class="booking__field">
+          <label for="pickup">Pick-up</label>
+          <select id="pickup" required></select>
+        </div>
+        <div class="booking__field">
+          <label for="dropoff">Drop-off</label>
+          <select id="dropoff" required></select>
+        </div>
+        <div class="booking__field">
+          <label for="startDate">From</label>
+          <input type="date" id="startDate" required />
+        </div>
+        <div class="booking__field">
+          <label for="endDate">Until</label>
+          <input type="date" id="endDate" required />
+        </div>
+        <div class="booking__field booking__field--sm">
+          <label for="age">Driver age</label>
+          <input type="number" id="age" min="18" max="99" value="30" required />
+        </div>
+        <button type="submit" class="btn btn--accent booking__submit">
+          Find cars
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="booking__note" id="bookingNote" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Tesla</span><span>✦</span><span>BMW</span><span>✦</span><span>Porsche</span><span>✦</span><span>Ford</span><span>✦</span><span>Toyota</span><span>✦</span><span>Honda</span><span>✦</span><span>Volkswagen</span><span>✦</span><span>Fiat</span><span>✦</span>
+        <span>Tesla</span><span>✦</span><span>BMW</span><span>✦</span><span>Porsche</span><span>✦</span><span>Ford</span><span>✦</span><span>Toyota</span><span>✦</span><span>Honda</span><span>✦</span><span>Volkswagen</span><span>✦</span><span>Fiat</span><span>✦</span>
+      </div>
+    </div>
+
+    <!-- ================= FLEET ================= -->
+    <section class="section" id="fleet">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow eyebrow--dark">The fleet</p>
+            <h2>Pick your vibe.</h2>
+          </div>
+          <p class="section__lead" id="fleetLead">Every car is under 2 years old, detailed between rentals, and comes with unlimited miles.</p>
+        </div>
+        <div class="filters" id="filters" role="tablist" aria-label="Filter by category"></div>
+        <div class="fleet" id="fleetGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS (bento) ================= -->
+    <section class="section section--dark" id="how">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">How it works</p>
+            <h2>Phone in hand.<br />Keys not required.</h2>
+          </div>
+        </div>
+        <div class="bento">
+          <article class="bento__card bento__card--wide bento__card--img">
+            <img src="assets/img/interior.jpg" alt="Driver's hands on a steering wheel at dusk" loading="lazy" />
+            <div class="bento__overlay">
+              <span class="step">01 — 03</span>
+              <h3>Book, verify, drive.</h3>
+              <p>Reserve in 60 seconds, upload your license once, then unlock your car with a digital key. That's it.</p>
+            </div>
+          </article>
+          <article class="bento__card">
+            <div class="bento__icon">⚡</div>
+            <h3>Skip the counter</h3>
+            <p>Mobile check-in and a locker code. Average pickup: 3 minutes.</p>
+          </article>
+          <article class="bento__card bento__card--accent">
+            <div class="bento__icon">$</div>
+            <h3>Price you see = price you pay</h3>
+            <p>Taxes and fees shown upfront. Free cancellation up to 24h before.</p>
+          </article>
+          <article class="bento__card">
+            <div class="bento__icon">🛟</div>
+            <h3>24/7 humans + AI</h3>
+            <p>Vee, our AI concierge, answers instantly. Real people are a tap away.</p>
+          </article>
+          <article class="bento__card">
+            <div class="bento__icon">🚚</div>
+            <h3>We deliver</h3>
+            <p>Hotel, home or cruise port drop-off for $29 each way.</p>
+          </article>
+          <article class="bento__card bento__card--wide bento__card--img">
+            <img src="assets/img/mercedes-amg-gt.jpg" alt="Silver Mercedes-AMG GT parked" loading="lazy" />
+            <div class="bento__overlay">
+              <span class="step">Long-term</span>
+              <h3>Stay a while. Save up to 30%.</h3>
+              <p>15% off weekly, 30% off monthly — with a free maintenance swap.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LOCATIONS ================= -->
+    <section class="section" id="locations">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow eyebrow--dark">Locations</p>
+            <h2>Where the road starts.</h2>
+          </div>
+          <p class="section__lead">One-way trips between any location are just $75 flat.</p>
+        </div>
+        <div class="locations" id="locationsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow eyebrow--dark">Reviews</p>
+            <h2>Drivers say it best.</h2>
+          </div>
+        </div>
+        <div class="reviews">
+          <figure class="review">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Landed at TPA, walked to the garage, phone unlocked the car. I was on the Courtney Campbell before my bags would've hit the carousel."</blockquote>
+            <figcaption><span class="avatar">JR</span> Jordan R. · Tesla Model 3</figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars">★★★★★</div>
+            <blockquote>"Asked the chatbot at midnight whether I could take the dog. Instant, clear answer. The Expedition fit 6 of us plus a golden retriever."</blockquote>
+            <figcaption><span class="avatar">AM</span> Alex M. · Ford Expedition</figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars">★★★★★</div>
+            <blockquote>"The quote was the final bill. Down to the cent. That has literally never happened to me with a rental company."</blockquote>
+            <figcaption><span class="avatar">SK</span> Sam K. · Toyota Camry</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section" id="faq">
+      <div class="container faq">
+        <div>
+          <p class="eyebrow eyebrow--dark">FAQ</p>
+          <h2>Good questions.</h2>
+          <p class="section__lead">Can't find yours? Vee answers anything about our cars, prices and policies — instantly.</p>
+          <button class="btn btn--dark" data-open-chat>Chat with Vee</button>
+        </div>
+        <div class="faq__list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta">
+      <div class="container cta__inner">
+        <h2>Your next road trip is<br /><em>three taps away.</em></h2>
+        <a href="#book" class="btn btn--accent btn--lg">Start booking</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <a href="#top" class="brand brand--light"><img src="assets/logo-mark.svg" alt="" width="32" height="32" /><span>velora</span></a>
+        <p class="footer__tag">Rent the drive, not the hassle.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p id="footerPhone"></p>
+        <p id="footerEmail"></p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#how">How it works</a>
+        <a href="#faq">Policies</a>
+        <a href="#locations">Locations</a>
+      </div>
+      <div>
+        <h4>Your bookings</h4>
+        <button class="linklike" id="myBookingsBtn">Manage booking</button>
+      </div>
+    </div>
+    <div class="container footer__legal">
+      <span>© <span id="year"></span> Velora Rentals. Demo site.</span>
+      <span>Photos: Unsplash</span>
+    </div>
+  </footer>
+
+  <!-- ================= RESERVATION MODAL ================= -->
+  <dialog class="modal" id="reserveModal" aria-labelledby="reserveTitle">
+    <form method="dialog" class="modal__inner" id="reserveForm">
+      <button class="modal__close" value="cancel" formnovalidate aria-label="Close">×</button>
+      <div class="modal__grid">
+        <div class="modal__left">
+          <img id="mCarImg" alt="" />
+          <h3 id="reserveTitle"></h3>
+          <p class="muted" id="mTrip"></p>
+
+          <fieldset>
+            <legend>Protection</legend>
+            <div id="mProtection" class="choice-list"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Extras</legend>
+            <div id="mExtras" class="choice-list"></div>
+          </fieldset>
+          <div class="row">
+            <label class="field"><span>Full name</span><input id="mName" required placeholder="Jordan Rivera" /></label>
+            <label class="field"><span>Email</span><input id="mEmail" type="email" required placeholder="you@email.com" /></label>
+          </div>
+          <label class="field"><span>Promo code</span><input id="mPromo" placeholder="FIRSTDRIVE" /></label>
+        </div>
+        <aside class="modal__right">
+          <h4>Price breakdown</h4>
+          <ul class="breakdown" id="mBreakdown"></ul>
+          <div class="total"><span>Total</span><strong id="mTotal"></strong></div>
+          <p class="muted small" id="mEligibility"></p>
+          <button class="btn btn--accent btn--block" id="mConfirm" value="confirm">Confirm reservation</button>
+          <p class="muted small">Pay at pickup. Free cancellation until 24h before.</p>
+        </aside>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="modal modal--sm" id="confirmModal">
+    <form method="dialog" class="modal__inner center">
+      <div class="confetti">🎉</div>
+      <h3>You're booked!</h3>
+      <p id="confirmText"></p>
+      <p class="code" id="confirmCode"></p>
+      <button class="btn btn--dark" value="ok">Done</button>
+    </form>
+  </dialog>
+
+  <dialog class="modal modal--sm" id="bookingsModal">
+    <form method="dialog" class="modal__inner">
+      <button class="modal__close" value="cancel" aria-label="Close">×</button>
+      <h3>Your bookings</h3>
+      <div id="bookingsList"></div>
+    </form>
+  </dialog>
+
+  <!-- ================= CHATBOT ================= -->
+  <button class="chat-launcher" id="chatLauncher" aria-label="Open chat with Vee" aria-expanded="false">
+    <span class="chat-launcher__icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>
+    </span>
+    <span class="chat-launcher__badge" id="chatBadge">1</span>
+  </button>
+
+  <section class="chat" id="chat" aria-label="Chat with Vee" hidden>
+    <header class="chat__head">
+      <div class="chat__avatar"><img src="assets/logo-mark.svg" alt="" /></div>
+      <div class="chat__title">
+        <strong>Vee · Velora concierge</strong>
+        <span class="chat__status"><i id="engineDot"></i><span id="engineLabel">Connecting…</span></span>
+      </div>
+      <button class="chat__icon-btn" id="chatSettingsBtn" aria-label="AI engine settings" title="AI engine settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+      <button class="chat__icon-btn" id="chatResetBtn" aria-label="New conversation" title="New conversation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <button class="chat__icon-btn" id="chatCloseBtn" aria-label="Close chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="chat__settings" id="chatSettings" hidden>
+      <p class="chat__settings-title">AI engine</p>
+      <label class="radio"><input type="radio" name="engine" value="auto" checked /> <span><b>Auto</b> — local Ollama model if running, else built-in assistant</span></label>
+      <label class="radio"><input type="radio" name="engine" value="ollama" /> <span><b>Ollama</b> (local, free) — model: <input id="ollamaModel" value="llama3.2" spellcheck="false" /></span></label>
+      <label class="radio"><input type="radio" name="engine" value="webllm" /> <span><b>In-browser AI</b> — downloads a ~900 MB open model once (needs Chrome/Edge with WebGPU)</span></label>
+      <label class="radio"><input type="radio" name="engine" value="builtin" /> <span><b>Built-in</b> — instant, offline, rule-based</span></label>
+      <div class="progress" id="webllmProgress" hidden><div class="progress__bar"></div><span></span></div>
+    </div>
+
+    <div class="chat__body" id="chatBody" aria-live="polite"></div>
+    <div class="chat__chips" id="chatChips"></div>
+    <form class="chat__input" id="chatForm">
+      <textarea id="chatInput" rows="1" placeholder="Ask about cars, prices, policies…" aria-label="Message"></textarea>
+      <button type="submit" id="chatSend" aria-label="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
