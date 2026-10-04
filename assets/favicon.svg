@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Velora">
+  <rect width="64" height="64" rx="16" fill="#0B0D10"/>
+  <path d="M14 18h10.5L32 38.5 39.5 18H50L37.2 48h-10.4z" fill="#D4FF3A"/>
+  <path d="M8 46h12M4 52h14" stroke="#D4FF3A" stroke-width="3.2" stroke-linecap="round" opacity=".55"/>
+</svg>
